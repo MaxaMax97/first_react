@@ -17,14 +17,16 @@ const Dialogs = (props) => {
             {id: 4, message: 'Hi,my name Lera'},
             {id: 5, message: 'Hi,my name Igor'}
         ] // Array object messages*/
-  
+
     let dialogsElements = props.data.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>) //  function map
     let messagesElements = props.data.messageAll.map(m => <Message message={m.message}/>)         // function map
     return (
+
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
+            <div>Deleted my</div>
             <div className={s.messages}>
                 {messagesElements}
             </div>
