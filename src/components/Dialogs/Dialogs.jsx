@@ -26,7 +26,6 @@ const Dialogs = (props) => {
             <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
-            <div>Deleted my</div>
             <div className={s.messages}>
                 {messagesElements}
             </div>
