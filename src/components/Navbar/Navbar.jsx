@@ -1,5 +1,6 @@
 import s from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
+import ImgFreinds from "../Profile/ProfileInfo/img";
 
 const Navbar = () => {
     return (
@@ -19,6 +20,13 @@ const Navbar = () => {
             <div className={s.item}>
                 <NavLink to='/setting' className={x => x.isActive ? s.active : s.item}>Setting</NavLink>
             </div>
+            <div className={s.item}>
+                <div className={x => x.isActive ? s.active : s.item}>Friends</div>
+                <ImgFreinds/>
+                <ImgFreinds/>
+                <ImgFreinds/>
+            </div>
+
         </nav>
     );
 };
