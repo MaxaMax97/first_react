@@ -1,6 +1,5 @@
 import s from './../Dialogs.module.css'
 import React from "react";
-import {updateNewMessageText} from "../../../redux/state";
 
 
 const InputText = (props) => {
@@ -9,12 +8,12 @@ const InputText = (props) => {
 
     let clic = () => {
 
-        props.addMessasge()
+        props.store.createMessage.addMessage()
 
     }
     const onChangeMessage = () => {
         let text = newText.current.value;
-        updateNewMessageText(text)
+        props.store.createMessage.updateNewMessageText(text)
     }
 
     return <div>
@@ -22,7 +21,7 @@ const InputText = (props) => {
             <textarea
                 onChange={onChangeMessage}
                 ref={newText}
-                value={props.newMessage.newMessage}
+                value={props.store.state.messagePage.newMessage}
             />
         </div>
         <div>
