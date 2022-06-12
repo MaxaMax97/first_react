@@ -1,5 +1,5 @@
 let store = {
-    state: {
+    _state: {
         profilePage: {
             post: [
                 {id: 1, message: 'I am learning react', likeCount: 24},
@@ -34,44 +34,50 @@ let store = {
             ]
         },
     },
-    createPost: {
-        addPost: () => {
-            let newPost = {
-                id: 5,
-                message: store.state.profilePage.newPostText,
-                likeCount: 0
-            }
-            store.state.profilePage.post.push(newPost)
-            store.state.profilePage.newPostText = ''
-            store.upDate.renderEntireTree(store.state)
-        },
-        updateNewPostText: (newText) => {
-
-            store.state.profilePage.newPostText = newText
-            store.upDate.renderEntireTree(store.state)
-        },
-    },
-    createMessage: {
-        addMessage: () => {
-            let newMess = {
-                id: 6, message: store.state.messagePage.newMessage
-            }
-            store.state.messagePage.message.push(newMess)
-            store.state.messagePage.newMessage = ''
-            store.upDate.renderEntireTree(store.state)
-        },
-        updateNewMessageText: (newText) => {
-            store.state.messagePage.newMessage = newText
-            store.upDate.renderEntireTree(store.state)
-        },
+    get_state() {
+        return this._state
     },
     upDate: {
-        renderEntireTree: () => {
+        _collSubscriber() {
             console.log('')
         },
-        subscribe: (observer) => {
-            store.upDate.renderEntireTree = observer
+        subscribe(observer) {
+            store.upDate._collSubscriber = observer
         }
+    },
+    dispatch(action) {
+
+        switch (action.type) {
+            case "ADD-POST":
+                let newPost = {
+                    id: 5,
+                    message: store._state.profilePage.newPostText,
+                    likeCount: 0
+                }
+                store._state.profilePage.post.push(newPost)
+                store._state.profilePage.newPostText = ''
+                store.upDate._collSubscriber(store._state)
+                break;
+            case "UPDATE-NEW-POST-TEXT":
+                store._state.profilePage.newPostText = action.newText
+                store.upDate._collSubscriber(store._state)
+                break;
+            case "ADD-MESSAGE":
+                let newMess = {
+                    id: 6, message: store._state.messagePage.newMessage
+                }
+                store._state.messagePage.message.push(newMess)
+                store._state.messagePage.newMessage = ''
+                store.upDate._collSubscriber(store._state)
+                break;
+            case "UPDATE-NEW-MESSAGE-TEXT" :
+                store._state.messagePage.newMessage = action.newText
+                store.upDate._collSubscriber(store._state)
+                break;
+        }
+
     }
+
 }
+window.store = store
 export default store

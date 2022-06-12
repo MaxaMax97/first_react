@@ -1,20 +1,22 @@
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
-/*import {addPost} from "../../../redux/state";*/
+/*import {addPost} from "../../../redux/_state";*/
 
 const MyPosts = (props) => {
-    let postsElements = props.post.map(p => <Post message={p.message} like={p.likeCount}/>)
+
+    let postsElements = props.store._state.profilePage.post.map(p => <Post message={p.message} like={p.likeCount}/>)
     let newPostElement = React.useRef()
 
-    let clic = () => {
+    let addPost = () => {
 
-        props.addPost()
+        props.dispatch({type: 'ADD-POST'})
 
     }
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.updateNewPostText(text)
+
+        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
 
     }
     return <div className={s.postsBlock}>
@@ -24,11 +26,11 @@ const MyPosts = (props) => {
                 <textarea
                     onChange={onPostChange}
                     ref={newPostElement}
-                    value={props.newPostText}
+                    value={props.store._state.profilePage.newPostText}
                 />
             </div>
             <div>
-                <button onClick={clic}> Add Post
+                <button onClick={addPost}> Add Post
                 </button>
             </div>
         </div>

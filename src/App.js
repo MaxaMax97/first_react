@@ -7,7 +7,6 @@ import {Route, Routes} from "react-router-dom";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Setting from "./components/Setting/Setting";
-import Friends from "./components/Navbar/Friends/Freinds"
 
 
 const App = (props) => {
@@ -18,9 +17,10 @@ const App = (props) => {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path="/dialogs/*"
-                           element={<Dialogs store={props.store}/>}/>
+                           element={<Dialogs dispatch={props.dispatch} store={props.store}/>}/>
+
                     <Route path="/profile"
-                           element={<Profile store={props.store}/>}/>
+                           element={<Profile dispatch={props.dispatch} store={props.store}/>}/>
                     <Route path="/music"
                            element={<Music/>}/>
                     <Route path="/news"
@@ -32,6 +32,7 @@ const App = (props) => {
         </div>
 
     );
+
 };
 
 export default App;

@@ -6,14 +6,17 @@ const InputText = (props) => {
 
     let newText = React.useRef()
 
-    let clic = () => {
+    let addMessage = () => {
 
-        props.store.createMessage.addMessage()
+        props.dispatch({type: 'ADD-MESSAGE'})
 
     }
     const onChangeMessage = () => {
         let text = newText.current.value;
-        props.store.createMessage.updateNewMessageText(text)
+        props.dispatch({
+            type: 'UPDATE-NEW-MESSAGE-TEXT',
+            newText: text
+        })
     }
 
     return <div>
@@ -21,11 +24,11 @@ const InputText = (props) => {
             <textarea
                 onChange={onChangeMessage}
                 ref={newText}
-                value={props.store.state.messagePage.newMessage}
+                value={props.store._state.messagePage.newMessage}
             />
         </div>
         <div>
-            <button onClick={clic}>Add text</button>
+            <button onClick={addMessage}>Add text</button>
         </div>
     </div>
 

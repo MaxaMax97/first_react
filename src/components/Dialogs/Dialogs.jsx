@@ -6,8 +6,8 @@ import InputText from './Message/InputText'
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.store.state.messagePage.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>) //  function map
-    let messagesElements = props.store.state.messagePage.message.map(m => <Message message={m.message}/>)         // function map
+    let dialogsElements = props.store._state.messagePage.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>) //  function map
+    let messagesElements = props.store._state.messagePage.message.map(m => <Message message={m.message}/>)         // function map
 
     return (
 
@@ -18,7 +18,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <InputText store={props.store}
+                <InputText dispatch={props.dispatch} store={props.store}
                 />
             </div>
         </div>
