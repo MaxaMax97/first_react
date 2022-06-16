@@ -10,17 +10,16 @@ import Setting from "./components/Setting/Setting";
 
 
 const App = (props) => {
-
+   
     return (<div className="app-wrapper">
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path="/dialogs/*"
-                           element={<Dialogs dispatch={props.dispatch} store={props.store}/>}/>
-
+                           element={<Dialogs store={props.store}/>}/>
                     <Route path="/profile"
-                           element={<Profile dispatch={props.dispatch} store={props.store}/>}/>
+                           element={<Profile dispatch={props.dispatch} store={props.store.getState().profilePage}/>}/>
                     <Route path="/music"
                            element={<Music/>}/>
                     <Route path="/news"
@@ -33,6 +32,7 @@ const App = (props) => {
 
     );
 
-};
+}
+
 
 export default App;
