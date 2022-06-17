@@ -3,10 +3,10 @@ import dialogsReducer from "./Dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 
 
-let store = {
+let storeDelete = {
     _state: {
         profilePage: {
-            post: [
+            posts: [
                 {id: 1, message: 'I am learning react', likeCount: 24},
                 {id: 2, message: 'Thanks Dimych', likeCount: 31},
                 {id: 3, message: 'Thanks Maxim', likeCount: 635},
@@ -48,7 +48,7 @@ let store = {
 
 
     subscribe(observer) {
-        store._collSubscriber = observer
+        storeDelete._collSubscriber = observer
 
     },
     dispatch(action) {
@@ -63,4 +63,4 @@ let store = {
 }
 
 
-export default store
+export default storeDelete

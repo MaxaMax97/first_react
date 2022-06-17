@@ -2,7 +2,7 @@ const updateNewPostText = 'UPDATE-NEW-POST-TEXT';
 const addPost = 'ADD-POST';
 
 let initialState = {
-    post: [
+    posts: [
         {id: 1, message: 'I am learning react', likeCount: 24},
         {id: 2, message: 'Thanks Dimych', likeCount: 31},
         {id: 3, message: 'Thanks Maxim', likeCount: 635},
@@ -20,7 +20,7 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 likeCount: 0
             }
-            state.post.push(newPost)
+            state.posts.push(newPost)
             state.newPostText = ''
             return state
         case "UPDATE-NEW-POST-TEXT":
