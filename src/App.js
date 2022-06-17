@@ -20,8 +20,7 @@ const App = (props) => {
                     <Route path="/dialogs/*"
                            element={<DialogsContainer store={props.store}/>}/>
                     <Route path="/profile"
-                           element={<Profile profilePage={props.state.profilePage}
-                                             dispatch={props.dispatch}/>}/>
+                           element={<Profile store={props.store}/>}/>
                     <Route path="/music"
                            element={<Music/>}/>
                     <Route path="/news"
